@@ -1,7 +1,7 @@
 function Login() {
   return (
     <>
-      <span>Login</span>
+      <div className="bg-red-600">HI</div>
     </>
   );
 }
