@@ -3,3 +3,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.credentials-bg {
+  background-image: url("./assets/credentials.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.box-shadow-quote {
+  box-shadow: -3px 0px 30px #dfe4ff;
+}
