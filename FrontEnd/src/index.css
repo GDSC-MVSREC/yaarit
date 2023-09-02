@@ -10,6 +10,22 @@
   }
 }
 
+@keyframes floating {
+  0% {
+    transform: translateY(10px);
+  }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/* animations */
+
+.floats-vertical {
+  animation: floating 1s ease infinite alternate-reverse both;
+}
+
 .credentials-bg {
   background-image: url("./assets/credentials.svg");
   background-repeat: no-repeat;
@@ -18,4 +34,27 @@
 
 .box-shadow-quote {
   box-shadow: -3px 0px 30px #dfe4ff;
+}
+
+.credentials-input {
+  border: 1px solid #d9d9d9;
+  border-radius: 10px;
+  height: 55px;
+  width: 400px;
+  padding-left: 15px;
+  margin-top: 10px;
+}
+
+.credentials-button {
+  background-image: url("./assets/Rectangle.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  height: 55px;
+}
+
+#forgot-password {
+  background: linear-gradient(90deg, #7bbfff 0%, #6076ff 49.48%, #7b6eff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
