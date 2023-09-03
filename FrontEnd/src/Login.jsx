@@ -4,6 +4,13 @@ import Arrow from "./assets/Vector.svg";
 function Login() {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const [successfulLogin, setSuccessfulLogin] = useState(0);
+
+  const authenticate = (event) => {
+    event.preventDefault();
+    console.log("To authenticate!");
+    console.log(Email + ":" + Password);
+  };
 
   return (
     <>
@@ -38,21 +45,36 @@ function Login() {
         </div>
         <div className="grid place-content-center">
           <div className="grid">
-            <span className="text-[#15144B] text-[2.2em] font-black tracking-wider">
-              Hello &#128075;
+            <span
+              className={
+                "text-[#15144B] text-[2.2em] font-black tracking-wider "
+              }
+            >
+              {successfulLogin === 0 ? (
+                <>Hello &#128075;</>
+              ) : successfulLogin === -1 ? (
+                <>Hey! &#129300;</>
+              ) : (
+                successfulLogin === 1 && <>Welcome back! &#129303;</>
+              )}
             </span>
             <span className=" text-[#778391] text-[1.2em] font-[500] tracking-wider">
-              Enter your details
+              {successfulLogin === 0 ? (
+                <>Enter your details</>
+              ) : successfulLogin === -1 ? (
+                <>Looks like your credentials are wrong. Try again!</>
+              ) : (
+                successfulLogin === 1 && <>Logging you in!</>
+              )}
             </span>
             <br />
-            <form className="grid">
+            <form className="grid" onSubmit={(e) => authenticate(e)}>
               <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
                 Email
               </span>
               <input
                 type="text"
                 id="Email-login"
-                name="Email-login"
                 className="credentials-input"
                 value={Email}
                 onChange={(e) => {
@@ -67,7 +89,6 @@ function Login() {
               <input
                 type="password"
                 id="Password-login"
-                name="Password-login"
                 className="credentials-input"
                 value={Password}
                 onChange={(e) => {
@@ -81,7 +102,6 @@ function Login() {
                   <input
                     type="checkbox"
                     id="remember-me"
-                    name="remember-me"
                     value="Remember me"
                   ></input>
                   <label
@@ -99,7 +119,6 @@ function Login() {
               <input
                 type="submit"
                 id="login"
-                name="login"
                 value="Login"
                 className="text-white text-[1.5em] font-black tracking-wider credentials-button"
               ></input>
