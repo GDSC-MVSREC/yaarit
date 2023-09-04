@@ -54,13 +54,9 @@ function Login() {
 
   return (
     <>
-      <div
-        className={`grid h-screen w-screen ${
-          isDesktopOrLaptop ? "grid-cols-2" : ""
-        }`}
-      >
+      <div className={`grid ${isDesktopOrLaptop ? "grid-cols-2" : ""}`}>
         {isDesktopOrLaptop && (
-          <div className="credentials-bg grid place-content-center">
+          <div className="credentials-bg grid h-screen min-h-[500px] place-content-center">
             <div className="px-[30px] py-[60px] rounded-2xl border-[2px] box-shadow-quote border-[#dfe4ff] bg-[#dfe4ff4d] backdrop-blur pl-[60px] pr-[80px] floats-vertical">
               <div className="flex">
                 <img
@@ -89,7 +85,9 @@ function Login() {
             </div>
           </div>
         )}
-        <div className="grid place-content-center relative">
+        <div
+          className={`grid place-content-center h-screen min-h-[500px] relative`}
+        >
           <img src={frame} alt="" className="absolute top-0 left-0" />
           <div className="grid mx-[30px]">
             {forgotPass ? (

@@ -18,9 +18,11 @@ export default function ForgotPass({ setForgotPass }) {
 
   return (
     <>
-      <button onClick={() => setForgotPass(false)}>
-        <img src={ArrowLeft} alt="" width={"40px"} height={"40px"} />
-      </button>
+      <div>
+        <button onClick={() => setForgotPass(false)}>
+          <img src={ArrowLeft} alt="" width={"40px"} height={"40px"} />
+        </button>
+      </div>
       <br />
       <span
         className={"text-[#15144B] text-[2.2em] font-black tracking-wider "}

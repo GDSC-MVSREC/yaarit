@@ -78,7 +78,7 @@ export default function LoginLayout({
             </label>
           </div>
           <button
-            className="font-[600]"
+            className="font-[600] ml-[40px]"
             id="forgot-password"
             onClick={() => setForgotPass(true)}
           >
