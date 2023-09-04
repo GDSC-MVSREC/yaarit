@@ -4,13 +4,28 @@ import Arrow from "./assets/Vector.svg";
 function Login() {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
+  const [remember, setRemeber] = useState(false);
   const [successfulLogin, setSuccessfulLogin] = useState(0);
 
-  const authenticate = (event) => {
+  const authenticate = async (event) => {
     event.preventDefault();
-    console.log("To authenticate!");
-    console.log(Email + ":" + Password);
+    // console.log("To authenticate!");
+    // console.log(Email + ":" + Password);
+    try {
+      const response = await axios.post("/api/login", { Email, Password });
+      const { token } = response.data;
+      if (remember) localStorage.setItem("token", token);
+      setSuccessfulLogin(1);
+      setTimeout(() => {}, 3000);
+    } catch (error) {
+      setSuccessfulLogin(-1);
+    }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token);
+  }, []);
 
   return (
     <>
