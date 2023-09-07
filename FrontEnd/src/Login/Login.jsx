@@ -58,7 +58,9 @@ function Login() {
         <div
           className={`grid place-content-center h-screen min-h-[500px] relative`}
         >
-          <img src={frame} alt="" className="absolute top-0 left-0" />
+          {!isDesktopOrLaptop && (
+            <img src={frame} alt="" className="absolute top-0 left-0" />
+          )}
           <div className="grid mx-[30px]">
             {forgotPass ? (
               <ForgotPass setForgotPass={setForgotPass} />

@@ -17,30 +17,34 @@ function Register() {
     query: "(min-width: 1090px)",
   });
 
-  useEffect(() => {
-    console.log(
-      fullName +
-        "," +
-        rEmail +
-        "," +
-        phNo +
-        "," +
-        rPass +
-        "," +
-        year +
-        "," +
-        branch +
-        "," +
-        plan
-    );
-  }, [fullName, rEmail, phNo, rPass, year, branch, plan]);
+  function checkRazorpay() {}
+
+  // useEffect(() => {
+  //   console.log(
+  //     fullName +
+  //       "," +
+  //       rEmail +
+  //       "," +
+  //       phNo +
+  //       "," +
+  //       rPass +
+  //       "," +
+  //       year +
+  //       "," +
+  //       branch +
+  //       "," +
+  //       plan
+  //   );
+  // }, [fullName, rEmail, phNo, rPass, year, branch, plan]);
 
   return (
     <>
       <div className={`grid ${isDesktopOrLaptop ? "grid-cols-2" : ""}`}>
         {isDesktopOrLaptop && <Quote />}
         <div className={`grid place-content-center h-screen relative `}>
-          <img src={frame} alt="" className="absolute top-0 left-0" />
+          {!isDesktopOrLaptop && (
+            <img src={frame} alt="" className="absolute top-0 left-0" />
+          )}
           <div className="grid mx-[30px] pt-[100px] overflow-y-scroll no-scrollbar">
             <RegisterLayout
               fullName={fullName}
@@ -51,12 +55,10 @@ function Register() {
               setPhoneNo={setPhoneNo}
               rPass={rPass}
               setRPass={setRPass}
-              year={year}
               setYear={setYear}
-              branch={branch}
               setBranch={setBranch}
-              plan={plan}
               setPlan={setPlan}
+              checkRazorpay={checkRazorpay}
             />
           </div>
         </div>

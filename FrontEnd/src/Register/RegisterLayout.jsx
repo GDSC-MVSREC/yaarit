@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function RegisterLayout({
   fullName,
   setFullName,
@@ -7,28 +9,75 @@ export default function RegisterLayout({
   setPhoneNo,
   rPass,
   setRPass,
-  year,
   setYear,
-  branch,
   setBranch,
-  plan,
   setPlan,
+  checkRazorpay,
 }) {
+  /* NOTATION LOGIC */
+  //  0 - has not changed
+  //  1 - true
+  // -1 - false
+  const [fnameCorrect, setFnameCorrect] = useState(0);
+  const [rEmailCorrect, setREmailCorrect] = useState(0);
+  const [phnoCorrect, setPhnoCorrect] = useState(0);
+  const [rPassCorrect, setRPassCorrect] = useState(0);
+  const [passMatchCorrect, setPassMatchCorrect] = useState(0);
+  const [wrongDetails, setWrongDetails] = useState(false);
+
+  //checking email domain
+  function checkMail(mail) {
+    if (mail.length !== 14 + 12) {
+      setREmailCorrect(-1);
+      return;
+    } else {
+      const x = "ni.ude.cersvm@";
+      for (let i = mail.length - 1, j = 0; j < 14; i--, j++) {
+        if (mail[i] !== x[j]) {
+          setREmailCorrect(-1);
+          return;
+        }
+      }
+    }
+    setREmailCorrect(1);
+  }
+
+  //check all conditions
+  function checkRules(event) {
+    event.preventDefault();
+    if (
+      fnameCorrect === 1 &&
+      rEmailCorrect === 1 &&
+      phnoCorrect === 1 &&
+      rPassCorrect === 1 &&
+      passMatchCorrect === 1
+    ) {
+      checkRazorpay(event);
+    } else {
+      setWrongDetails(true);
+    }
+  }
+
   return (
     <>
       <span
         className={"text-[#15144B] text-[2.2em] font-black tracking-wider "}
       >
-        Create Account
+        {wrongDetails ? "Hey!" : "Create Account"}
       </span>
       <span className=" text-[#778391] text-[1.2em] font-[500] tracking-wider">
-        Enter your details
+        {wrongDetails ? "Get your ticks green!" : "Enter your details"}
       </span>
       <br />
       <br />
-      <form className="grid">
+      <form className="grid" onSubmit={(e) => checkRules(e)}>
         <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
-          Full Name
+          Full Name{" "}
+          {fnameCorrect === 1 ? (
+            <span className="text-[#00FF00]">&#x2713;</span>
+          ) : (
+            fnameCorrect === -1 && <span>&#10060;</span>
+          )}
         </span>
         <input
           type="text"
@@ -36,13 +85,23 @@ export default function RegisterLayout({
           className="credentials-input"
           value={fullName}
           onChange={(e) => {
-            setFullName(e.target.value);
+            setFullName(e.target.value.trim());
+            if (e.target.value.trim().length !== 0) {
+              setFnameCorrect(1);
+            } else {
+              setFnameCorrect(-1);
+            }
           }}
           required
         ></input>
         <br />
         <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
-          Email
+          Email{" "}
+          {rEmailCorrect === 1 ? (
+            <span className="text-[#00FF00]">&#x2713;</span>
+          ) : (
+            rEmailCorrect === -1 && <span>&#10060;</span>
+          )}
         </span>
         <input
           type="text"
@@ -50,13 +109,19 @@ export default function RegisterLayout({
           className="credentials-input"
           value={rEmail}
           onChange={(e) => {
-            setREmail(e.target.value);
+            setREmail(e.target.value.trim());
+            checkMail(e.target.value.trim());
           }}
           required
         ></input>
         <br />
         <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
-          Phone number
+          Phone number{" "}
+          {phnoCorrect === 1 ? (
+            <span className="text-[#00FF00]">&#x2713;</span>
+          ) : (
+            phnoCorrect === -1 && <span>&#10060;</span>
+          )}
         </span>
         <input
           type="number"
@@ -64,15 +129,29 @@ export default function RegisterLayout({
           min={1e9}
           id="phno-register"
           className="credentials-input no-arrow"
-          value={phNo}
+          value={phnoCorrect !== 0 && phNo}
           onChange={(e) => {
             setPhoneNo(e.target.value);
+            if (e.target.value.length === 10) {
+              setPhnoCorrect(1);
+            } else {
+              setPhnoCorrect(-1);
+            }
           }}
           required
         ></input>
         <br />
         <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
-          Password
+          Password{" "}
+          {rPassCorrect === 1 ? (
+            <span className="text-[#00FF00]">&#x2713;</span>
+          ) : rPassCorrect === -1 ? (
+            <span>&#10060;</span>
+          ) : (
+            rPassCorrect === -2 && (
+              <span className="text-[#ff0000]"> - too short</span>
+            )
+          )}
         </span>
         <input
           type="password"
@@ -80,23 +159,41 @@ export default function RegisterLayout({
           className="credentials-input"
           value={rPass}
           onChange={(e) => {
-            setRPass(e.target.value);
+            setPassMatchCorrect(0);
+            setRPass(e.target.value.trim());
+            if (e.target.value.trim().length === 0) {
+              setRPassCorrect(-1);
+            } else if (e.target.value.trim().length <= 5) {
+              setRPassCorrect(-2);
+            } else {
+              setRPassCorrect(1);
+            }
           }}
           required
         ></input>
         <br />
         <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
-          Confirm password
+          Confirm password{" "}
+          {passMatchCorrect === 1 ? (
+            <span className="text-[#00FF00]">&#x2713;</span>
+          ) : (
+            passMatchCorrect === -1 && <span>&#10060;</span>
+          )}
         </span>
         <input
           type="password"
           id="rePassword-register"
           className="credentials-input"
-          onChange={() => {}}
+          onChange={(e) => {
+            if (e.target.value.trim() === rPass) {
+              setPassMatchCorrect(1);
+            } else {
+              setPassMatchCorrect(-1);
+            }
+          }}
           required
         ></input>
         <br />
-
         <div>
           <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
             Year
@@ -138,15 +235,16 @@ export default function RegisterLayout({
           </select>
         </div>
         <br />
-        <div className="flex justify-between">
+        <div className="flex justify-between relative">
           <span
             className={"text-[#15144B] text-[1.5em] font-black tracking-wider "}
           >
             Select your plan
           </span>
-          <button className="font-[600]" id="view-details">
+          <span className="font-[600]" id="view-details">
             view details &#63;
-          </button>
+          </span>
+          <div className="popup">Refer MainPage for Plan Details</div>
         </div>
         <br />
         <div>
