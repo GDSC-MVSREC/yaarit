@@ -14,6 +14,10 @@ function Login() {
   const [remember, setRemeber] = useState(false);
   const [successfulLogin, setSuccessfulLogin] = useState(0);
   const [forgotPass, setForgotPass] = useState(false);
+  const [passResetMessage, setPassResetMessage] = useState(false);
+  const [invalidEmailForResetMessage, setInvalidEmailForResetMessage] =
+    useState(false);
+
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1090px)",
   });
@@ -59,7 +63,7 @@ function Login() {
           className={`grid place-content-center h-screen min-h-[500px] relative`}
         >
           {!isDesktopOrLaptop && (
-            <img src={frame} alt="" className="absolute top-0 left-0" />
+            <img src={frame} alt="" className="absolute top-0 left-0 -z-1" />
           )}
           <div className="grid mx-[30px]">
             {forgotPass ? (
