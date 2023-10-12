@@ -1,3 +1,22 @@
 {
-    
+  "25b2f0c1-1a0e-4563-a998-2e01189b83c2": {
+    "username": "Tarun",
+    "email": "245120733014@mvsrec.edu.in",
+    "phno": "1000000000",
+    "password": "123456",
+    "year": "4",
+    "branch": "cse",
+    "plan": "1",
+    "PASSWORD_DURATION": 1697104681899
+  },
+  "35378faf-b7a9-48d5-96d7-ab087b5e2a81": {
+    "username": "Tarun",
+    "email": "245120733017@mvsrec.edu.in",
+    "phno": "7382670104",
+    "password": "T@run1",
+    "year": "4",
+    "branch": "cse",
+    "plan": "1",
+    "PASSWORD_DURATION": 1697105750976
+  }
 }

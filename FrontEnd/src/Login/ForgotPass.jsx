@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Resetpass from "./ResetPass";
 import ArrowLeft from "../assets/chevron_left_FILL0_wght400_GRAD0_opsz24.svg";
+import Axios from "axios";
 
 export default function ForgotPass({ setForgotPass }) {
   const [emailForCode, setEmailForLink] = useState("");
@@ -10,24 +11,33 @@ export default function ForgotPass({ setForgotPass }) {
   const [verify, setVerify] = useState(false);
   const [newpass, setNewpass] = useState(false);
 
-  const GetLink = (event) => {
+  const GetMail = async (event) => {
     event.preventDefault();
-
-    //axios
-
-    setGetC(false);
-    setVerify(true);
-    setEmailForLink("");
+    try {
+      await Axios.post("http://localhost:8000/reset/sendForgetMail", {
+        email: emailForCode,
+        AUTH_API_KEY: "AIyuhjerty9poiud9qwer4poijkhpoiubqXpkjm",
+      });
+      setGetC(false);
+      setVerify(true);
+    } catch (error) {
+      console.error("Error in reaching the server");
+    }
   };
 
-  const GetResetPass = (event) => {
+  const GetResetPass = async (event) => {
     event.preventDefault();
-
-    //axios
-
-    setVerify(false);
-    setNewpass(true);
-    setCodeForReset("");
+    try {
+      await Axios.post("http://localhost:8000/reset/verifyForgetMail", {
+        AUTH_PASSWORD: codeForReset,
+        AUTH_API_KEY: "AIyuhjerty9poiud9qwer4poijkhpoiubqXpkjm",
+      });
+      setVerify(false);
+      setNewpass(true);
+      setCodeForReset("");
+    } catch (error) {
+      console.error("Error in reaching the server");
+    }
   };
 
   function getCode() {
@@ -51,7 +61,7 @@ export default function ForgotPass({ setForgotPass }) {
         <br />
         <form
           onSubmit={(event) => {
-            GetLink(event);
+            GetMail(event);
           }}
           className="grid"
         >
@@ -138,7 +148,9 @@ export default function ForgotPass({ setForgotPass }) {
     <>
       {getC && getCode()}
       {verify && enterCode()}
-      {newpass && <Resetpass setForgotPass={setForgotPass} />}
+      {newpass && (
+        <Resetpass setForgotPass={setForgotPass} email={emailForCode} />
+      )}
     </>
   );
 }

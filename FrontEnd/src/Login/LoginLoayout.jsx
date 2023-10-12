@@ -19,7 +19,9 @@ export default function LoginLayout({
         ) : successfulLogin === -1 ? (
           <>Hey! &#129300;</>
         ) : (
-          successfulLogin === 1 && <>Welcome back! &#129303;</>
+          (successfulLogin === 1 || successfulLogin === 2) && (
+            <>Welcome back! &#129303;</>
+          )
         )}
       </span>
       <span className=" text-[#778391] text-[1.2em] font-[500] tracking-wider">

@@ -25,29 +25,43 @@ function Login() {
   const authenticate = async (event) => {
     event.preventDefault();
     try {
-      // const response = await Axios.post("/api/login", { Email, Password });
-      // const { token } = response.data;
-      // if (remember) localStorage.setItem("token", token);
-      setSuccessfulLogin(1);
-      setTimeout(() => {
-        navigate("/main", { state: { Password, Email } });
-      }, 2000);
+      console.log(Email + "," + Password);
+      const response = await Axios.post("http://localhost:8000/users/signin", {
+        email: Email,
+        password: Password,
+        AUTH_API_KEY: "AIyuhjerty9poiud9qwer4poijkhpoiubqXpkjm",
+      });
+      console.log(response);
+      if (response.data.message !== "") {
+        setSuccessfulLogin(-2);
+      } else {
+        const { token } = response.data;
+        if (remember) localStorage.setItem("token", token);
+
+        setSuccessfulLogin(1);
+        setTimeout(() => {
+          navigate("/main", { state: { Password, Email }, replace: true });
+        }, 2000);
+      }
     } catch (error) {
       setSuccessfulLogin(-1);
     }
   };
 
-  // useEffect(() => {
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     if (token) {
-  //       const expiryDate = new Date(token.split(".")[1]);
-  //       if (new Date() <= expiryDate) {
-  //         navigate("/main", { state: { Password, Email } });
-  //       }
-  //     }
-  //   } catch (error) {}
-  // }, []);
+  useEffect(() => {
+    try {
+      const token = localStorage.getItem("token");
+      Axios.post("http://localhost:8000/users/autosignin", {
+        token: token,
+        AUTH_API_KEY: "AIyuhjerty9poiud9qwer4poijkhpoiubqXpkjm",
+      }).then((response) => {
+        if (response.data.email !== "") {
+          setSuccessfulLogin(1);
+          navigate("/main", { state: { Password, Email }, replace: true });
+        }
+      });
+    } catch (error) {}
+  }, []);
 
   useEffect(() => {
     setEmail("");
