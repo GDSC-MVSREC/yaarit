@@ -18,5 +18,15 @@
     "branch": "cse",
     "plan": "1",
     "PASSWORD_DURATION": 1697105750976
+  },
+  "b410c334-9e93-457f-ac3e-0c075691b068": {
+    "username": "Karthik",
+    "email": "245120733066@mvsrec.edu.in",
+    "phno": "1000000000",
+    "password": "123456",
+    "year": "4",
+    "branch": "cse",
+    "plan": "1",
+    "PASSWORD_DURATION": 1697377304643
   }
 }

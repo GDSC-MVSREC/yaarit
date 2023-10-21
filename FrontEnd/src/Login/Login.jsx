@@ -40,7 +40,7 @@ function Login() {
 
         setSuccessfulLogin(1);
         setTimeout(() => {
-          navigate("/main", { state: { Password, Email }, replace: true });
+          navigate("/Home", { state: { Password, Email }, replace: true });
         }, 2000);
       }
     } catch (error) {
@@ -57,7 +57,7 @@ function Login() {
       }).then((response) => {
         if (response.data.email !== "") {
           setSuccessfulLogin(1);
-          navigate("/main", { state: { Password, Email }, replace: true });
+          navigate("/Home", { state: { Password, Email }, replace: true });
         }
       });
     } catch (error) {}

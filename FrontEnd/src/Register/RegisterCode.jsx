@@ -17,7 +17,7 @@ export default function RegisterCode({ Email, Password }) {
         }
       );
       console.log(response);
-      navigate("/main", { state: { Password, Email }, replace: true });
+      navigate("/Home", { state: { Password, Email }, replace: true });
     } catch (error) {}
   };
 

@@ -33,7 +33,7 @@
 }
 
 .box-shadow-quote {
-  box-shadow: -3px 0px 30px #dfe4ff;
+  box-shadow: -3px 0px 30px #ced5fa;
 }
 
 .credentials-input {
@@ -54,6 +54,7 @@
 }
 
 #forgot-password,
+#view-details,
 #view-details {
   background: linear-gradient(90deg, #7bbfff 0%, #6076ff 49.48%, #7b6eff 100%);
   -webkit-background-clip: text;
@@ -79,6 +80,14 @@
 #view-details:hover + .popup {
   opacity: 1;
   transform: scale(1, 1);
+}
+
+.wrapping {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @layer utilities {
