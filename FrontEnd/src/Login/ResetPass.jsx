@@ -19,7 +19,6 @@ export default function Resetpass({ setForgotPass, email }) {
             password: pass,
           }
         );
-        console.log(response);
         setForgotPass(false);
       }
     } catch (error) {
@@ -65,7 +64,7 @@ export default function Resetpass({ setForgotPass, email }) {
         </span>
 
         <input
-          type="text"
+          type="password"
           id="Email-login-newpass"
           className="credentials-input"
           value={pass}
@@ -92,7 +91,7 @@ export default function Resetpass({ setForgotPass, email }) {
           )}
         </span>
         <input
-          type="text"
+          type="password"
           id="Email-login-newpass-check"
           className="credentials-input"
           onChange={(e) => {

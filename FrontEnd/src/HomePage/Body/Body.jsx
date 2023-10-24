@@ -1,15 +1,48 @@
 import { useEffect } from "react";
 import BlogList from "./BodyComponents/BlogList";
 import EventsList from "./BodyComponents/EventsList";
+import { useMediaQuery } from "react-responsive";
 
-export default function Body({ blogs, blogScroll, eventScroll }) {
+export default function Body({
+  blogs,
+  Events,
+  blogScroll,
+  eventScroll,
+  renderNow,
+}) {
   useEffect(() => {
     window.history.scrollRestoration = "manual";
   }, []);
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1090px)",
+  });
+  const isTablet = useMediaQuery({
+    query: "(min-width: 700px)",
+  });
   return (
-    <div className=" py-[50px] px-[80px]">
-      <EventsList eventScroll={eventScroll} />
-      <BlogList blogs={blogs} blogScroll={blogScroll} />
+    <div
+      className={
+        isTablet
+          ? isDesktopOrLaptop
+            ? "py-[50px] px-[80px]"
+            : "py-[40px] px-[60px]"
+          : " py-[30px] px-[30px]"
+      }
+    >
+      <EventsList
+        Events={Events}
+        eventScroll={eventScroll}
+        isDesktopOrLaptop={isDesktopOrLaptop}
+        isTablet={isTablet}
+        renderNow={renderNow}
+      />
+      <BlogList
+        blogs={blogs}
+        blogScroll={blogScroll}
+        isDesktopOrLaptop={isDesktopOrLaptop}
+        isTablet={isTablet}
+        renderNow={renderNow}
+      />
     </div>
   );
 }

@@ -79,6 +79,7 @@ async function verifyMail(req, res) {
   try {
     const { AUTH_PASSWORD } = req.body; // Input from frontend
     const readFilePromise = promisify(fs.readFile);
+    const writeFilePromise = promisify(fs.writeFile);
     const data = await readFilePromise(FILE_PATH, "utf-8");
     const users = JSON.parse(data);
     if (!users[AUTH_PASSWORD]) {
@@ -95,6 +96,8 @@ async function verifyMail(req, res) {
       PASSWORD_DURATION,
     } = users[AUTH_PASSWORD];
     if (Date.now() > PASSWORD_DURATION) {
+      delete users[AUTH_PASSWORD];
+      await writeFilePromise(FILE_PATH, JSON.stringify(users, null, 2));
       return res.send("Verification code expired"); // Handle This In frontend
     }
     const newUser = new UserSchema({
@@ -127,18 +130,25 @@ async function verifyMail(req, res) {
       .then((result) => {
         transporter
           .sendMail(mailOptions)
-          .then(() => {
+          .then(async () => {
+            delete users[AUTH_PASSWORD];
+            await writeFilePromise(FILE_PATH, JSON.stringify(users, null, 2));
             return res.send("User registered successfully"); // Handle This In frontend
           })
-          .catch(() => {
+          .catch(async () => {
+            delete users[AUTH_PASSWORD];
+            await writeFilePromise(FILE_PATH, JSON.stringify(users, null, 2));
             return res.send("Mail not sent registered"); // Handle This In frontend
           });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(async (error) => {
+        delete users[AUTH_PASSWORD];
+        await writeFilePromise(FILE_PATH, JSON.stringify(users, null, 2));
         return res.send("Error in saving the user"); // Handle This In frontend
       });
   } catch (error) {
+    delete users[AUTH_PASSWORD];
+    await writeFilePromise(FILE_PATH, JSON.stringify(users, null, 2));
     return res.send("Internal Server Error");
   }
 }

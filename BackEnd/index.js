@@ -1,10 +1,12 @@
 import dotenv from "dotenv";
 import authRouter from "./src/routes/authRouter.js";
 import gmailRouter from "./src/routes/gmailRouter.js";
+import blogsRouter from "./src/routes/blogsRouter.js";
 import resetRouter from "./src/routes/forgetGmailRouter.js";
 import mongoose from "mongoose";
 import express from "express";
 import cors from "cors";
+import eventsRouter from "./src/routes/eventRouter.js";
 
 dotenv.config();
 
@@ -18,6 +20,8 @@ app.use(cors());
 app.use("/users", authRouter);
 app.use("/register", gmailRouter);
 app.use("/reset", resetRouter);
+app.use("/blogs", blogsRouter);
+app.use("/events", eventsRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello world");

@@ -32,6 +32,10 @@
   background-size: cover;
 }
 
+.blog-bg {
+  background: linear-gradient(90deg, #7bbfff 0%, #6076ff 49.48%, #7b6eff 100%);
+}
+
 .box-shadow-quote {
   box-shadow: -3px 0px 30px #ced5fa;
 }
@@ -54,7 +58,6 @@
 }
 
 #forgot-password,
-#view-details,
 #view-details {
   background: linear-gradient(90deg, #7bbfff 0%, #6076ff 49.48%, #7b6eff 100%);
   -webkit-background-clip: text;

@@ -83,17 +83,26 @@ const verifyForgetMail = async (req, res) => {
   try {
     const { AUTH_PASSWORD } = req.body;
     const readFilePromise = promisify(fs.readFile);
+    const writeFilePromise = promisify(fs.writeFile);
     const data = await readFilePromise(FILE_PATH, "utf-8");
     const users = JSON.parse(data);
     if (!users[AUTH_PASSWORD]) {
+      delete users[AUTH_PASSWORD];
+      await writeFilePromise(FILE_PATH, JSON.stringify(users, null, 2));
       return res.send("Invalid verification code");
     }
     const { PASSWORD_DURATION } = users[AUTH_PASSWORD];
     if (Date.now() > PASSWORD_DURATION) {
+      delete users[AUTH_PASSWORD];
+      await writeFilePromise(FILE_PATH, JSON.stringify(users, null, 2));
       return res.send("Verification code expired");
     }
+    delete users[AUTH_PASSWORD];
+    await writeFilePromise(FILE_PATH, JSON.stringify(users, null, 2));
     return res.send("Correct code");
   } catch (error) {
+    delete users[AUTH_PASSWORD];
+    await writeFilePromise(FILE_PATH, JSON.stringify(users, null, 2));
     return res.send("Internal Server Error");
   }
 };
