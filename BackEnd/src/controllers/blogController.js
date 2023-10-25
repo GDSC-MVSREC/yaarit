@@ -28,7 +28,7 @@ const blogpage = async (req, res) => {
 const blogupload = async (req, res) => {
   //for admin use only
   const blog = new BlogSchema({
-    _id: 4,
+    _id: 5,
     Photo: {
       data: fs.readFileSync("E:/YaarIt/FrontEnd/src/assets/Blog.png", {
         encoding: "base64",

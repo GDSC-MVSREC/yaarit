@@ -1,12 +1,17 @@
 import EventPanel from "./EventPanel";
+import LoadingCard from "./LoadingCard";
+import { useNavigate } from "react-router-dom";
 
 export default function EventsList({
   Events,
   eventScroll,
   isDesktopOrLaptop,
   isTablet,
+  userEvents,
+  setUserEvents,
   renderNow,
 }) {
+  const navigate = useNavigate();
   return (
     <div ref={eventScroll}>
       <div
@@ -37,25 +42,53 @@ export default function EventsList({
                 : "text-[20px] px-[40px]"
               : "text-[18px] px-[23px]"
           }  font-black tracking-wider credentials-button `}
+          onClick={() => {
+            navigate("/Home/EventPage");
+          }}
         >
           More
         </button>
       </div>
-      <div className="flex flex-wrap items-center justify-around ">
-        {Events.map((obj, index) => {
-          if (index < (isTablet ? (isDesktopOrLaptop ? 4 : 3) : 2))
-            return (
-              <div key={obj + index}>
-                {renderNow && (
+      <div className="flex flex-wrap justify-around ">
+        {renderNow ? (
+          Events.map((obj, index) => {
+            if (index < (isTablet ? (isDesktopOrLaptop ? 4 : 3) : 2))
+              return (
+                <div key={obj + index}>
                   <EventPanel
                     Event={Events[index]}
+                    userEvents={userEvents}
+                    setUserEvents={setUserEvents}
                     isDesktopOrLaptop={isDesktopOrLaptop}
                     isTablet={isTablet}
                   />
-                )}
-              </div>
-            );
-        })}
+                </div>
+              );
+          })
+        ) : (
+          <>
+            <LoadingCard
+              isTablet={isTablet}
+              isDesktopOrLaptop={isDesktopOrLaptop}
+            />
+            <LoadingCard
+              isTablet={isTablet}
+              isDesktopOrLaptop={isDesktopOrLaptop}
+            />
+            {isTablet && (
+              <LoadingCard
+                isTablet={isTablet}
+                isDesktopOrLaptop={isDesktopOrLaptop}
+              />
+            )}
+            {isDesktopOrLaptop && (
+              <LoadingCard
+                isTablet={isTablet}
+                isDesktopOrLaptop={isDesktopOrLaptop}
+              />
+            )}
+          </>
+        )}
       </div>
     </div>
   );

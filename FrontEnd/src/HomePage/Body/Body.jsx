@@ -8,6 +8,8 @@ export default function Body({
   Events,
   blogScroll,
   eventScroll,
+  userEvents,
+  setUserEvents,
   renderNow,
 }) {
   useEffect(() => {
@@ -34,6 +36,8 @@ export default function Body({
         eventScroll={eventScroll}
         isDesktopOrLaptop={isDesktopOrLaptop}
         isTablet={isTablet}
+        userEvents={userEvents}
+        setUserEvents={setUserEvents}
         renderNow={renderNow}
       />
       <BlogList

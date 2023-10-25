@@ -33,6 +33,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  Events: [
+    {
+      type: Number,
+    },
+  ],
 });
 
 export default mongoose.model("User", UserSchema);

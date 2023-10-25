@@ -9,6 +9,8 @@ export default function Header({
   blogScroll,
   eventScroll,
   scrollHandler,
+  userEvents,
+  setUserEvents,
   renderNow,
 }) {
   const navigate = useNavigate();
@@ -63,6 +65,8 @@ export default function Header({
           blogScroll={blogScroll}
           eventScroll={eventScroll}
           scrollHandler={scrollHandler}
+          userEvents={userEvents}
+          setUserEvents={setUserEvents}
           renderNow={renderNow}
         />
       </div>

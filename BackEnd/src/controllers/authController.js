@@ -28,7 +28,7 @@ const signin = async (req, res) => {
       email: email,
       password: password,
     };
-    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
+    const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "24h" });
     response.token = token;
     response.email = email;
     response.password = password;

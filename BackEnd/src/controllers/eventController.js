@@ -1,4 +1,5 @@
 import EventSchema from "../models/event.js";
+import UserSchema from "../models/auth.js";
 import * as fs from "fs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
@@ -57,19 +58,25 @@ const eventregistration = async (req, res) => {
     const mailOptions = {
       from: GMAIL_ID,
       to: email,
-      subject: ` Registration Google form - ` + data.Heading,
+      subject: ` Registration Google form - ` + data[0].Heading,
       html: `<div>
-                <a href=${data.GForm}>Google form</a>
+                <a href=${data[0].GForm}>Google form</a>
                   </div>
                 `,
     };
-    transporter
-      .sendMail(mailOptions)
+    UserSchema.updateOne({ _id: email }, { $addToSet: { Events: id } })
       .then(() => {
-        return res.send("Mail sent");
+        transporter
+          .sendMail(mailOptions)
+          .then(() => {
+            return res.send("Mail sent");
+          })
+          .catch(() => {
+            return res.send("Mail not sent");
+          });
       })
       .catch(() => {
-        return res.send("Mail not sent ");
+        return res.send("Registration Error!");
       });
   } catch (error) {
     return res.send("Internal server error");
@@ -97,4 +104,27 @@ const eventupload = async (req, res) => {
   res.send(await event.save());
 };
 
-export { eventlist, eventpage, eventregistration, eventupload };
+const eventfetch = async (req, res) => {
+  let response = {
+    message: "",
+    data: {},
+  };
+  try {
+    const token = req.body.token;
+    const decodedToken = await new Promise((resolve, reject) => {
+      jwt.verify(token, SECRET_KEY, (err, decoded) => {
+        if (err) reject(err);
+        else resolve(decoded);
+      });
+    });
+    const email = decodedToken.email;
+    const data = await UserSchema.find({ _id: email }, { Events: 1, _id: 0 });
+    response.data = data;
+    res.send(response);
+  } catch (error) {
+    response.message = "Internal Server Error";
+    res.send(response);
+  }
+};
+
+export { eventlist, eventpage, eventregistration, eventupload, eventfetch };

@@ -1,4 +1,6 @@
 import BlogPanel from "./BlogPanel";
+import LoadingCard from "./LoadingCard";
+import { useNavigate } from "react-router-dom";
 
 export default function BlogList({
   blogs,
@@ -7,6 +9,7 @@ export default function BlogList({
   isTablet,
   renderNow,
 }) {
+  const navigate = useNavigate();
   return (
     <div className="mt-[70px]" ref={blogScroll}>
       <div
@@ -37,25 +40,51 @@ export default function BlogList({
                 : "text-[20px] px-[40px]"
               : "text-[18px] px-[23px]"
           }  font-black tracking-wider credentials-button `}
+          onClick={() => {
+            navigate("/Home/BlogPage");
+          }}
         >
           More
         </button>
       </div>
       <div className="flex flex-wrap justify-around items-center ">
-        {blogs.map((obj, index) => {
-          if (index < (isTablet ? (isDesktopOrLaptop ? 4 : 3) : 2))
-            return (
-              <div key={obj + index}>
-                {renderNow && (
+        {renderNow ? (
+          blogs.map((obj, index) => {
+            if (index < (isTablet ? (isDesktopOrLaptop ? 4 : 3) : 2))
+              return (
+                <div key={obj + index}>
                   <BlogPanel
                     object={blogs[index]}
                     isDesktopOrLaptop={isDesktopOrLaptop}
                     isTablet={isTablet}
                   />
-                )}
-              </div>
-            );
-        })}
+                </div>
+              );
+          })
+        ) : (
+          <>
+            <LoadingCard
+              isTablet={isTablet}
+              isDesktopOrLaptop={isDesktopOrLaptop}
+            />
+            <LoadingCard
+              isTablet={isTablet}
+              isDesktopOrLaptop={isDesktopOrLaptop}
+            />
+            {isTablet && (
+              <LoadingCard
+                isTablet={isTablet}
+                isDesktopOrLaptop={isDesktopOrLaptop}
+              />
+            )}
+            {isDesktopOrLaptop && (
+              <LoadingCard
+                isTablet={isTablet}
+                isDesktopOrLaptop={isDesktopOrLaptop}
+              />
+            )}
+          </>
+        )}
       </div>
     </div>
   );

@@ -20,8 +20,6 @@
   }
 }
 
-/* animations */
-
 .floats-vertical {
   animation: floating 1s ease infinite alternate-reverse both;
 }
@@ -53,6 +51,12 @@
   background-image: url("./assets/Rectangle.svg");
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 10px;
+  height: 55px;
+}
+
+.credentials-button-disabled {
+  background-color: grey;
   border-radius: 10px;
   height: 55px;
 }
