@@ -47,6 +47,12 @@
   margin-top: 10px;
 }
 
+.description-bg {
+  background-image: url("./assets/Group51.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .credentials-button {
   background-image: url("./assets/Rectangle.svg");
   background-repeat: no-repeat;
