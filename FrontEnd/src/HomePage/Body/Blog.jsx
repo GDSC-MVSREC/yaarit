@@ -69,7 +69,7 @@ export default function Blog() {
             )}
           </div>
           <div
-            className={`rounded-xl shadow-md border-[#dfe4ffff] bg-[#dfe4ff] backdrop-blur border-[1px] mx-[20px]  py-[50px] ${
+            className={`rounded-xl shadow-md bg-white mx-[20px] py-[50px] ${
               isTablet
                 ? isDesktopOrLaptop
                   ? "px-[150px] my-[30px]"

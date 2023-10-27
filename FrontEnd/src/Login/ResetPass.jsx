@@ -37,7 +37,7 @@ export default function Resetpass({ setForgotPass, email }) {
       <span
         className={"text-[#15144B] text-[2.2em] font-black tracking-wider "}
       >
-        New Password &#128274;
+        New Password
       </span>
       <span className=" text-[#778391] text-[1.2em] font-[500] tracking-wider">
         Enter your New Password
@@ -106,7 +106,7 @@ export default function Resetpass({ setForgotPass, email }) {
           type="submit"
           id="resetpass"
           value="Reset Pass"
-          className="text-white text-[1.5em] font-black tracking-wider credentials-button"
+          className="text-white text-[1.5em] font-black tracking-wider cursor-pointer credentials-button"
         ></input>
       </form>
     </>

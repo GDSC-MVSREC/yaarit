@@ -22,7 +22,7 @@ export default function RegisterCode({ Email, Password }) {
   };
 
   return (
-    <>
+    <div className="flex flex-col">
       <span
         className={"text-[#15144B] text-[2.2em] font-black tracking-wider "}
       >
@@ -69,6 +69,6 @@ export default function RegisterCode({ Email, Password }) {
         <br />
         <br />
       </form>
-    </>
+    </div>
   );
 }

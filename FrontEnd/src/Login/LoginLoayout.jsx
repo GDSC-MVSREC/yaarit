@@ -1,3 +1,5 @@
+import load from "../assets/arrow_back_ios_FILL0_wght400_GRAD0_opsz24.svg";
+
 export default function LoginLayout({
   Email,
   setEmail,
@@ -8,6 +10,7 @@ export default function LoginLayout({
   successfulLogin,
   setForgotPass,
   authenticate,
+  navigate,
 }) {
   return (
     <>
@@ -15,20 +18,18 @@ export default function LoginLayout({
         className={"text-[#15144B] text-[2.2em] font-black tracking-wider "}
       >
         {successfulLogin === 0 ? (
-          <>Hello &#128075;</>
+          <>Hello </>
         ) : successfulLogin === -1 ? (
-          <>Hey! &#129300;</>
+          <>Hey!</>
         ) : (
-          (successfulLogin === 1 || successfulLogin === 2) && (
-            <>Welcome back! &#129303;</>
-          )
+          (successfulLogin === 1 || successfulLogin === 2) && <>Welcome back!</>
         )}
       </span>
       <span className=" text-[#778391] text-[1.2em] font-[500] tracking-wider">
         {successfulLogin === 0 ? (
           <>Enter your details</>
         ) : successfulLogin === -1 ? (
-          <>Looks like your credentials are wrong. Try again!</>
+          <>Credentials are wrong. Try again!</>
         ) : (
           successfulLogin === 1 && <>Logging you in!</>
         )}
@@ -70,6 +71,7 @@ export default function LoginLayout({
               id="remember-me"
               value="Remember me"
               checked={remember}
+              className="cursor-pointer"
               onChange={(e) => setRemeber(e.target.checked)}
             ></input>
             <label
@@ -80,6 +82,7 @@ export default function LoginLayout({
             </label>
           </div>
           <button
+            type="button"
             className="font-[600] ml-[40px]"
             id="forgot-password"
             onClick={() => setForgotPass(true)}
@@ -92,9 +95,20 @@ export default function LoginLayout({
           type="submit"
           id="login"
           value="Login"
-          className="text-white text-[1.5em] font-black tracking-wider credentials-button"
-        ></input>
+          className={`text-white text-[1.5em] font-black tracking-wider cursor-pointer credentials-button`}
+        />
       </form>
+      <span className="text-center mt-[20px]">
+        Don't have an account?
+        <button
+          className="text-[#5258FF] font-black ml-[5px]"
+          onClick={() => {
+            navigate("/Register", { replace: true });
+          }}
+        >
+          Register
+        </button>
+      </span>
     </>
   );
 }

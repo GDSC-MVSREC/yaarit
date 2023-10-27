@@ -15,9 +15,6 @@ function Login() {
   const [remember, setRemeber] = useState(false);
   const [successfulLogin, setSuccessfulLogin] = useState(0);
   const [forgotPass, setForgotPass] = useState(false);
-  const [passResetMessage, setPassResetMessage] = useState(false);
-  const [invalidEmailForResetMessage, setInvalidEmailForResetMessage] =
-    useState(false);
 
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1090px)",
@@ -35,7 +32,9 @@ function Login() {
         }
       );
       if (response.data.message !== "") {
-        setSuccessfulLogin(-2);
+        setSuccessfulLogin(-1);
+        setEmail("");
+        setPassword("");
       } else {
         const { token } = response.data;
         if (remember) localStorage.setItem("token", token);
@@ -46,8 +45,9 @@ function Login() {
         }, 2000);
       }
     } catch (error) {
-      alert(JSON.stringify(error));
       setSuccessfulLogin(-1);
+      setEmail("");
+      setPassword("");
     }
   };
 
@@ -81,14 +81,13 @@ function Login() {
   return (
     <>
       {Render && (
-        <div className={`grid ${isDesktopOrLaptop ? "grid-cols-2" : ""}`}>
+        <div
+          className={`grid shadow-xl h-screen rounded-xl ${
+            isDesktopOrLaptop ? "grid-cols-2" : ""
+          }`}
+        >
           {isDesktopOrLaptop && <Quote />}
-          <div
-            className={`grid place-content-center h-screen min-h-[500px] relative`}
-          >
-            {!isDesktopOrLaptop && (
-              <img src={frame} alt="" className="absolute top-0 left-0 -z-1" />
-            )}
+          <div className={`grid place-content-center h-screen relative`}>
             <div className="grid mx-[30px]">
               {forgotPass ? (
                 <ForgotPass setForgotPass={setForgotPass} />
@@ -103,6 +102,7 @@ function Login() {
                   successfulLogin={successfulLogin}
                   setForgotPass={setForgotPass}
                   authenticate={authenticate}
+                  navigate={navigate}
                 />
               )}
             </div>

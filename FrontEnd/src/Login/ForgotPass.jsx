@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Resetpass from "./ResetPass";
-import ArrowLeft from "../assets/chevron_left_FILL0_wght400_GRAD0_opsz24.svg";
+import ArrowLeft from "../assets/arrow_back_FILL0_wght400_GRAD0_opsz24.svg";
 import Axios from "axios";
 
 export default function ForgotPass({ setForgotPass }) {
@@ -44,7 +44,7 @@ export default function ForgotPass({ setForgotPass }) {
     return (
       <>
         <div>
-          <button onClick={() => setForgotPass(false)}>
+          <button onClick={() => setForgotPass(false)} className="z-100">
             <img src={ArrowLeft} alt="" width={"40px"} height={"40px"} />
           </button>
         </div>
@@ -52,10 +52,10 @@ export default function ForgotPass({ setForgotPass }) {
         <span
           className={"text-[#15144B] text-[2.2em] font-black tracking-wider "}
         >
-          Forgot Password &#128273;
+          Forgot Password
         </span>
         <span className=" text-[#778391] text-[1.2em] font-[500] tracking-wider">
-          Enter your email for to get Code
+          Enter email to get Code
         </span>
         <br />
         <br />
@@ -85,7 +85,7 @@ export default function ForgotPass({ setForgotPass }) {
             type="submit"
             id="get-code"
             value="Get code"
-            className="text-white text-[1.5em] font-black tracking-wider credentials-button"
+            className="text-white text-[1.5em] font-black tracking-wider cursor-pointer credentials-button"
           ></input>
         </form>
       </>
@@ -108,9 +108,8 @@ export default function ForgotPass({ setForgotPass }) {
         <span
           className={"text-[#15144B] text-[2.2em] font-black tracking-wider "}
         >
-          Enter the code &#x1f5a5;
+          Enter the code
         </span>
-        <br />
         <br />
         <form
           onSubmit={(event) => {
@@ -137,7 +136,7 @@ export default function ForgotPass({ setForgotPass }) {
             type="submit"
             id="verify"
             value="Verify"
-            className="text-white text-[1.5em] font-black tracking-wider credentials-button"
+            className="text-white text-[1.5em] font-black tracking-wider cursor-pointer credentials-button"
           ></input>
         </form>
       </>

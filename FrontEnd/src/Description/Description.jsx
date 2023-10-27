@@ -1,5 +1,6 @@
 import { useMediaQuery } from "react-responsive";
 import Yaarit from "../assets/Yaarit.svg";
+import tickicon from "../assets/Group13.svg";
 import { useNavigate } from "react-router-dom";
 
 function Description() {
@@ -10,6 +11,20 @@ function Description() {
     query: "(min-width: 850px)",
   });
   const navigate = useNavigate();
+
+  const array = [
+    "Early access to events",
+    "Access to special events",
+    "Access to blogs",
+    "Doubts sessions",
+    "Chance to win goodies",
+  ];
+
+  const plans = [
+    { price: "Rs.700", duration: "6 Months" },
+    { price: "Rs.1000", duration: "1 Year" },
+    { price: "Rs.1400", duration: "2 Years" },
+  ];
 
   return (
     <div>
@@ -103,6 +118,101 @@ function Description() {
               possibilities!
             </span>
           </div>
+        </div>
+      </div>
+      <div className="px-[30px] py-[100px]">
+        <div className="flex flex-col justify-center items-center">
+          <span
+            className={`font-black tracking-wider ${
+              isTablet
+                ? isDesktopOrLaptop
+                  ? "text-[50px]"
+                  : "text-[50px]"
+                : "text-[35px]"
+            }`}
+          >
+            Find The Plan That
+          </span>
+          <span
+            className={` font-black tracking-wider ${
+              isTablet
+                ? isDesktopOrLaptop
+                  ? "text-[50px]"
+                  : "text-[50px]"
+                : "text-[35px]"
+            }`}
+          >
+            Suits <span className="text-[#5258FF]">Your Needs</span>
+          </span>
+        </div>
+        <div className="flex flex-wrap justify-evenly gap-[20px] mt-[20px] items-center">
+          <ul className="mt-[20px] drop-shadow-xl flex flex-col items-center justify-center">
+            {array.map((obj, index) => {
+              return (
+                <div key={index} className="flex w-full">
+                  <img
+                    src={tickicon}
+                    alt=""
+                    className={`w-full h-auto ${
+                      isTablet
+                        ? isDesktopOrLaptop
+                          ? "max-w-[20px] mr-[5px]"
+                          : "max-w-[23px] mr-[5px]"
+                        : "max-w-[18px] mr-[5px]"
+                    }`}
+                  />
+                  <li
+                    className={`font-bold  ${
+                      isTablet
+                        ? isDesktopOrLaptop
+                          ? "text-[25px] "
+                          : "text-[23px] "
+                        : "text-[18px] "
+                    } mt-[10px]`}
+                  >
+                    {obj}
+                  </li>
+                </div>
+              );
+            })}
+          </ul>
+          {plans.map((obj, index) => {
+            return (
+              <div
+                key={index}
+                className={` flex flex-col rounded-xl text-[#15144B] text-center shadow-xl border-[2px] border-[#71B0FF] backdrop-blur py-[50px] px-[50px] ${
+                  isTablet
+                    ? isDesktopOrLaptop
+                      ? "mt-[50px] max-w-[400px] "
+                      : "mt-[40px] max-w-[380px] "
+                    : "mt-[25px] max-w-[340px] "
+                }`}
+              >
+                <span
+                  className={`font-black ${
+                    isTablet
+                      ? isDesktopOrLaptop
+                        ? "text-[60px] "
+                        : "text-[50px] "
+                      : "text-[30px] "
+                  } mt-[10px]`}
+                >
+                  {obj.price}
+                </span>
+                <span
+                  className={`font-bold ${
+                    isTablet
+                      ? isDesktopOrLaptop
+                        ? "text-[30px] "
+                        : "text-[25px] "
+                      : "text-[20px] "
+                  }`}
+                >
+                  - {obj.duration} -
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

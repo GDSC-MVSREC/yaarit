@@ -13,6 +13,7 @@ export default function RegisterLayout({
   setBranch,
   setPlan,
   checkRazorpay,
+  navigate,
 }) {
   /* NOTATION LOGIC */
   //  0 - has not changed
@@ -59,7 +60,7 @@ export default function RegisterLayout({
   }
 
   return (
-    <>
+    <div className="flex flex-col w-fit px-[50px] ">
       <span
         className={"text-[#15144B] text-[2.2em] font-black tracking-wider "}
       >
@@ -194,55 +195,62 @@ export default function RegisterLayout({
           required
         ></input>
         <br />
-        <div>
-          <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
-            Year
-          </span>
-          <select
-            name="year"
-            id="year"
-            className="credentials-input ml-[10px]"
-            required
-            onChange={(e) => setYear(e.target.value)}
-          >
-            <option value=""></option>
-            <option value="1">First Year</option>
-            <option value="2">Second Year</option>
-            <option value="3">Thrid year</option>
-            <option value="4">Forth year</option>
-          </select>
+        <div className="flex justify-evenly  items-center">
+          <div>
+            <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
+              Year
+            </span>
+            <select
+              name="year"
+              id="year"
+              className="credentials-input ml-[10px]"
+              required
+              onChange={(e) => setYear(e.target.value)}
+            >
+              <option value=""></option>
+              <option value="1">First Year</option>
+              <option value="2">Second Year</option>
+              <option value="3">Thrid year</option>
+              <option value="4">Forth year</option>
+            </select>
+          </div>
 
-          <span className="text-[#15144B] text-[1.2em] font-black tracking-wider ml-[15px]">
-            Branch
-          </span>
-          <select
-            name="branch"
-            id="branch"
-            className="credentials-input ml-[10px]"
-            required
-            onChange={(e) => {
-              setBranch(e.target.value);
-            }}
-          >
-            <option value=""></option>
-            <option value="cse">CSE</option>
-            <option value="it">IT</option>
-            <option value="ece">ECE</option>
-            <option value="eee">EEE</option>
-            <option value="civil">CIVIL</option>
-            <option value="mech">MECH</option>
-            <option value="auto">AUTO</option>
-          </select>
+          <div>
+            <span className="text-[#15144B] text-[1.2em] font-black tracking-wider ml-[15px]">
+              Branch
+            </span>
+            <select
+              name="branch"
+              id="branch"
+              className="credentials-input ml-[10px]"
+              required
+              onChange={(e) => {
+                setBranch(e.target.value);
+              }}
+            >
+              <option value=""></option>
+              <option value="cse">CSE</option>
+              <option value="it">IT</option>
+              <option value="ece">ECE</option>
+              <option value="eee">EEE</option>
+              <option value="civil">CIVIL</option>
+              <option value="mech">MECH</option>
+              <option value="auto">AUTO</option>
+            </select>
+          </div>
         </div>
         <br />
-        <div className="flex justify-between relative">
+        <div className="flex justify-between gap-[20px] items-center relative">
           <span
             className={"text-[#15144B] text-[1.5em] font-black tracking-wider "}
           >
             Select your plan
           </span>
-          <span className="font-[600]" id="view-details">
-            view details &#63;
+          <span
+            className="font-[600] select-none cursor-pointer"
+            id="view-details"
+          >
+            Details&#63;
           </span>
           <div className="popup">Refer MainPage for Plan Details</div>
         </div>
@@ -292,14 +300,40 @@ export default function RegisterLayout({
         </div>
         <br />
         <input
+          disabled={
+            fnameCorrect !== 1 ||
+            rEmailCorrect !== 1 ||
+            phnoCorrect !== 1 ||
+            rPassCorrect !== 1 ||
+            passMatchCorrect !== 1
+          }
           type="submit"
           id="register"
           value="Register"
-          className="text-white text-[1.5em] font-black tracking-wider credentials-button "
+          className={`text-white text-[1.5em] font-black tracking-wider ${
+            fnameCorrect !== 1 ||
+            rEmailCorrect !== 1 ||
+            phnoCorrect !== 1 ||
+            rPassCorrect !== 1 ||
+            passMatchCorrect !== 1
+              ? "credentials-button-disabled cursor-not-allowed"
+              : "credentials-button cursor-pointer"
+          } `}
         ></input>
         <br />
         <br />
       </form>
-    </>
+      <span className="text-center mb-[40px]">
+        Already have an account?
+        <button
+          className="text-[#5258FF] font-black ml-[5px]"
+          onClick={() => {
+            navigate("/Login", { replace: true });
+          }}
+        >
+          Login
+        </button>
+      </span>
+    </div>
   );
 }

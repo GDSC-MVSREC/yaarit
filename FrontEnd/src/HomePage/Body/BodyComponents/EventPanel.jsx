@@ -44,7 +44,7 @@ export default function EventPanel({
 
   return (
     <div
-      className={` flex flex-col rounded-xl border-[2px] border-[#dfe4fff] backdrop-blur px-[25px]  h-auto ${
+      className={` flex flex-col rounded-xl hover:scale-[1.05] transition-transform border-[2px] border-[#dfe4fff] backdrop-blur px-[25px]  h-auto ${
         isTablet
           ? isDesktopOrLaptop
             ? "mt-[50px] max-w-[400px] pt-[25px] pb-[30px]"
@@ -107,9 +107,9 @@ export default function EventPanel({
             <button
               className={`text-white font-bold flex items-center justify-center tracking-wider ${
                 userEvents.has(Event["_id"])
-                  ? "credentials-button-disabled"
-                  : "credentials-button"
-              } px-[40px] `}
+                  ? "credentials-button-disabled px-[30px]"
+                  : "credentials-button px-[40px]"
+              }  `}
               onClick={() => {
                 HandleRegister();
               }}

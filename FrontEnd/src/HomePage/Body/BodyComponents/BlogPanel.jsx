@@ -11,7 +11,7 @@ export default function BlogPanel({ object, isDesktopOrLaptop, isTablet }) {
 
   return (
     <div
-      className={` flex flex-col rounded-xl border-[2px] border-[#dfe4fff] backdrop-blur px-[25px]  h-auto ${
+      className={` flex flex-col rounded-xl hover:scale-[1.05] transition-transform border-[2px] border-[#dfe4fff] backdrop-blur px-[25px]  h-auto ${
         isTablet
           ? isDesktopOrLaptop
             ? "mt-[50px] max-w-[400px] pt-[25px] pb-[30px]"
