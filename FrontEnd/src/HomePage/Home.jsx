@@ -41,28 +41,26 @@ export default function Home({
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }
   return (
-    <>
-      <>
-        <Header
-          blog={blogs[0]}
-          Event={Events[0]}
-          blogScroll={blogScroll}
-          eventScroll={eventScroll}
-          scrollHandler={scrollHandler}
-          userEvents={userEvents}
-          setUserEvents={setUserEvents}
-          renderNow={renderNow}
-        />
-        <Body
-          blogs={blogs}
-          Events={Events}
-          blogScroll={blogScroll}
-          eventScroll={eventScroll}
-          userEvents={userEvents}
-          setUserEvents={setUserEvents}
-          renderNow={renderNow}
-        />
-      </>
-    </>
+    <div className="">
+      <Header
+        blog={blogs[0]}
+        Event={Events[0]}
+        blogScroll={blogScroll}
+        eventScroll={eventScroll}
+        scrollHandler={scrollHandler}
+        userEvents={userEvents}
+        setUserEvents={setUserEvents}
+        renderNow={renderNow}
+      />
+      <Body
+        blogs={blogs}
+        Events={Events}
+        blogScroll={blogScroll}
+        eventScroll={eventScroll}
+        userEvents={userEvents}
+        setUserEvents={setUserEvents}
+        renderNow={renderNow}
+      />
+    </div>
   );
 }

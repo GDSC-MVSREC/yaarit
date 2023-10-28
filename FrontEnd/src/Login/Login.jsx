@@ -45,7 +45,7 @@ function Login() {
         }, 2000);
       }
     } catch (error) {
-      setSuccessfulLogin(-1);
+      alert("Error Connecting to Server");
       setEmail("");
       setPassword("");
     }

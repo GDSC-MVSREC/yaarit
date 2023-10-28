@@ -46,12 +46,12 @@ export default function EventPage({
   return (
     <div ref={eventPage} className="relative">
       <div
-        className={`blog-bg flex justify-evenly items-center ${
+        className={`bg-gray-100 flex gap-[30px] items-center ${
           isTablet
             ? isDesktopOrLaptop
-              ? "px-[100px] py-[200px]"
-              : "px-[30px] py-[100px]"
-            : "px-[5px] py-[70px]"
+              ? "px-[200px] py-[150px]"
+              : "px-[100px] py-[100px]"
+            : "px-[70px] py-[70px]"
         }`}
       >
         <img
@@ -65,25 +65,24 @@ export default function EventPage({
           }}
         />
         <span
-          className={`font-[700] ${
+          className={`font-[700] cut-out ${
             isTablet
               ? isDesktopOrLaptop
                 ? "text-[60px]"
                 : "text-[50px]"
               : "text-[40px]"
-          } tracking-wider text-[#15144B]`}
+          } tracking-wider `}
         >
-          EVENTS
+          Events
         </span>
-        <div></div>
       </div>
       <div
-        className={`absolute w-full flex flex-wrap justify-evenly items-center ${
+        className={`absolute w-full flex flex-wrap justify-evenly overflow-y-auto no-scrollbar py-[60px] gap-[50px] ${
           isTablet
             ? isDesktopOrLaptop
-              ? "top-[350px] "
-              : "top-[230px] "
-            : "top-[140px] "
+              ? "top-[250px] "
+              : "top-[170px] "
+            : "top-[110px] "
         }`}
       >
         {renderNowEvents ? (

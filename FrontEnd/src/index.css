@@ -43,13 +43,19 @@ img {
   background: linear-gradient(90deg, #7bbfff 0%, #6076ff 49.48%, #7b6eff 100%);
 }
 
+.cut-out {
+  background: linear-gradient(90deg, #7bbfff 0%, #6076ff 49.48%, #7b6eff 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
 .box-shadow-quote {
   box-shadow: -3px 0px 30px #ced5fa;
 }
 
 .credentials-input {
   border: 1px solid #d9d9d9;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 55px;
   padding-left: 15px;
   padding-right: 15px;
@@ -63,16 +69,12 @@ img {
 }
 
 .credentials-button {
-  background-image: url("./assets/Rectangle.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 10px;
-  height: 55px;
+  background: linear-gradient(90deg, #5da9fa 0%, #6069fa 51.04%, #978afc 100%);
 }
 
 .credentials-button-disabled {
   background-color: grey;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 55px;
 }
 

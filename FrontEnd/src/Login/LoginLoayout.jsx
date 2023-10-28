@@ -35,7 +35,7 @@ export default function LoginLayout({
         )}
       </span>
       <br />
-      <form className="grid" onSubmit={(e) => authenticate(e)}>
+      <form className="flex flex-col " onSubmit={(e) => authenticate(e)}>
         <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
           Email
         </span>
@@ -95,7 +95,7 @@ export default function LoginLayout({
           type="submit"
           id="login"
           value="Login"
-          className={`text-white text-[1.5em] font-black tracking-wider cursor-pointer credentials-button`}
+          className={`text-white text-[1.5em] font-black tracking-wider py-[10px] rounded-md cursor-pointer credentials-button`}
         />
       </form>
       <span className="text-center mt-[20px]">

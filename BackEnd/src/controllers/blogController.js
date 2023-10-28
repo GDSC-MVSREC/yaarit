@@ -4,7 +4,7 @@ import * as fs from "fs";
 const bloglist = async (req, res) => {
   let response = { message: "", data: {} };
   try {
-    const bloglist = await BlogSchema.find().sort({ $natural: -1 }).limit(4);
+    const bloglist = await BlogSchema.find().sort({ $natural: -1 }).limit(3);
     response.data = bloglist;
     res.send(response);
   } catch (error) {
