@@ -85,7 +85,7 @@ export default function ForgotPass({ setForgotPass }) {
             type="submit"
             id="get-code"
             value="Get code"
-            className="text-white text-[1.5em] font-black tracking-wider cursor-pointer credentials-button"
+            className="text-white text-[1.5em] font-black tracking-wider py-[10px] rounded-md cursor-pointer credentials-button"
           ></input>
         </form>
       </>
@@ -136,7 +136,7 @@ export default function ForgotPass({ setForgotPass }) {
             type="submit"
             id="verify"
             value="Verify"
-            className="text-white text-[1.5em] font-black tracking-wider cursor-pointer credentials-button"
+            className="text-white text-[1.5em] font-black tracking-wider py-[10px] rounded-md cursor-pointer credentials-button"
           ></input>
         </form>
       </>

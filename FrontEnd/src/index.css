@@ -79,7 +79,8 @@ img {
 }
 
 #forgot-password,
-#view-details {
+#view-details,
+#profile-in {
   background: linear-gradient(90deg, #7bbfff 0%, #6076ff 49.48%, #7b6eff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

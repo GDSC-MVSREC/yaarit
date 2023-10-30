@@ -64,11 +64,21 @@ export default function RegisterCode({ Email, Password }) {
           type="submit"
           id="code"
           value="Verify"
-          className="text-white text-[1.5em] font-black tracking-wider credentials-button "
+          className="text-white text-[1.5em] font-black tracking-wider py-[10px] rounded-md credentials-button "
         ></input>
         <br />
-        <br />
       </form>
+      <span className="text-center my-[10px]">
+        Already have an account?
+        <button
+          className="text-[#5258FF] font-black ml-[5px]"
+          onClick={() => {
+            navigate("/Login", { replace: true });
+          }}
+        >
+          Login
+        </button>
+      </span>
     </div>
   );
 }

@@ -2,6 +2,12 @@ import { useMediaQuery } from "react-responsive";
 import Yaarit from "../assets/Yaarit.svg";
 import tickicon from "../assets/Group13.svg";
 import { useNavigate } from "react-router-dom";
+import git from "../assets/git.svg";
+import insta from "../assets/insta.svg";
+import linkedin from "../assets/linkedin.svg";
+import pooja from "../assets/PoojaReddyChiduruppala.jpg";
+import karthik from "../assets/KarthikLaxmisetti.jpg";
+import tarun from "../assets/tarun.jpg";
 
 function Description() {
   const isDesktopOrLaptop = useMediaQuery({
@@ -24,6 +30,35 @@ function Description() {
     { price: "Rs.700", duration: "6 Months" },
     { price: "Rs.1000", duration: "1 Year" },
     { price: "Rs.1400", duration: "2 Years" },
+  ];
+
+  const team = [
+    {
+      name: "Karthik Laxmisetti",
+      post: "PROJECT LEAD",
+      insta:
+        "https://www.instagram.com/invites/contact/?i=1l4w70hi30jh1&utm_content=9yw0hlc",
+      git: "https://github.com/LaxmisettiKarthik",
+      linkedin:
+        "https://www.linkedin.com/in/karthik-laxmisetti-362986226?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BFLDB7YDzSimIaYoxVzQkAQ%3D%3D",
+      photo: karthik,
+    },
+    {
+      name: "Chiduruppala Pooja",
+      post: "TECH LEAD",
+      insta: "",
+      git: "",
+      linkedin: "",
+      photo: pooja,
+    },
+    {
+      name: "Tarun Jakkula",
+      post: "WEBDEV LEAD",
+      insta: "https://instagram.com/tarunjakkula?igshid=OGQ5ZDc2ODk2ZA==",
+      git: "https://github.com/TarunJakkula",
+      linkedin: "https://www.linkedin.com/in/tarun-jakkula",
+      photo: tarun,
+    },
   ];
 
   return (
@@ -145,7 +180,7 @@ function Description() {
             Suits <span className="text-[#5258FF]">Your Needs</span>
           </span>
         </div>
-        <div className="flex flex-wrap justify-evenly gap-[20px] mt-[20px] items-center">
+        <div className="flex flex-wrap justify-evenly gap-[20px] mt-[60px] items-center">
           <ul className="mt-[20px] drop-shadow-xl flex flex-col items-center justify-center">
             {array.map((obj, index) => {
               return (
@@ -210,6 +245,78 @@ function Description() {
                 >
                   - {obj.duration} -
                 </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="px-[30px] py-[100px] ">
+        <div className="flex flex-col justify-center items-center">
+          <span
+            className={`font-black tracking-wider ${
+              isTablet
+                ? isDesktopOrLaptop
+                  ? "text-[50px]"
+                  : "text-[50px]"
+                : "text-[35px]"
+            }`}
+          >
+            Our Team
+          </span>
+        </div>
+        <div className="flex justify-evenly flex-wrap px-[40px] mt-[100px] gap-[60px] items-center">
+          {team.map((obj, index) => {
+            return (
+              <div
+                key={index}
+                className={` flex flex-col gap-[30px] justify-center items-center py-[30px] ${
+                  isTablet
+                    ? isDesktopOrLaptop
+                      ? " w-[350px]"
+                      : " w-[340px]"
+                    : " w-[320px]"
+                }`}
+              >
+                <img
+                  src={obj.photo}
+                  alt=""
+                  width={isTablet ? 200 : 150}
+                  className="rounded-[100px] shadow-[0px_7px_29px_0px_rgba(100,100,111,0.2)]"
+                />
+                <span
+                  className={`font-black tracking-wider ${
+                    isTablet
+                      ? isDesktopOrLaptop
+                        ? "text-[27px]"
+                        : "text-[27px]"
+                      : "text-[19px]"
+                  }`}
+                >
+                  {obj.name}
+                </span>
+                <span
+                  className={`font-black text-[#FF0000] tracking-wider ${
+                    isTablet
+                      ? isDesktopOrLaptop
+                        ? "text-[15px]"
+                        : "text-[15px]"
+                      : "text-[10px]"
+                  }`}
+                >
+                  {obj.post}
+                </span>
+                <div className="flex justify-center items-center gap-[20px]">
+                  <a href={obj.insta} target="_blank">
+                    <img src={insta} alt="" width={isTablet ? 30 : 20} />
+                  </a>
+                  <a href={obj.git} target="_blank">
+                    <img src={git} alt="" width={isTablet ? 30 : 20} />
+                  </a>
+                  <a href={obj.linkedin} target="_blank">
+                    {" "}
+                    <img src={linkedin} alt="" width={isTablet ? 30 : 20} />
+                  </a>
+                </div>
               </div>
             );
           })}

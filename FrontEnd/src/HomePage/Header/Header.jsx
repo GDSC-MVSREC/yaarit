@@ -40,6 +40,9 @@ export default function Header({
           <button
             id="profile"
             className="font-black pt-[6px] text-[20px] tracking-wide"
+            onClick={() => {
+              navigate("/Home/Profile");
+            }}
           >
             Profile
           </button>
