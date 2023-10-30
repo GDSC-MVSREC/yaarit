@@ -29,7 +29,7 @@ export default function ProfilePage() {
     try {
       const token = sessionStorage.getItem("token");
       const response = await Axios.post(
-        "http://localhost:8000/profile/profileInfo",
+        "http://192.168.0.104:8000/profile/profileInfo",
         {
           AUTH_API_KEY: "AIyuhjerty9poiud9qwer4poijkhpoiubqXpkjm",
           token: token,
@@ -38,6 +38,7 @@ export default function ProfilePage() {
       setData(response.data.data);
       setRendernow(true);
     } catch (error) {
+      alert(error);
       alert("Error reaching server");
       navigate("/Home");
     }
@@ -47,7 +48,7 @@ export default function ProfilePage() {
     event.preventDefault();
     try {
       if (same === 1 && oldpass === 1) {
-        await Axios.post("http://localhost:8000/reset/ChangePassword", {
+        await Axios.post("http://192.168.0.104:8000/reset/ChangePassword", {
           AUTH_API_KEY: "AIyuhjerty9poiud9qwer4poijkhpoiubqXpkjm",
           email: data.Email,
           password: pass,
