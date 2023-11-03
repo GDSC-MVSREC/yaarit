@@ -20,10 +20,35 @@ export default function RegisterLayout({
   // -1 - false
   const [fnameCorrect, setFnameCorrect] = useState(0);
   const [rEmailCorrect, setREmailCorrect] = useState(0);
-  const [phnoCorrect, setPhnoCorrect] = useState(0);
   const [rPassCorrect, setRPassCorrect] = useState(0);
   const [passMatchCorrect, setPassMatchCorrect] = useState(0);
   const [wrongDetails, setWrongDetails] = useState(false);
+  const [phNoValid, setPhNoValid] = useState(true);
+
+  const isValidPhoneNumber = (phone) => {
+    const phoneNumberPattern = /^[0-9]{10}$/;
+    return phoneNumberPattern.test(phone);
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    const phone = e.target.value;
+    const numericPhone = phone.replace(/\D/g, ''); // Remove non-numeric characters
+    setPhoneNo(numericPhone);
+
+    if (numericPhone.length === 10 && isValidPhoneNumber(numericPhone)) {
+      setPhNoValid(true);
+    } else {
+      setPhNoValid(false);
+    }
+  };
+
+  const renderPhoneNumberValidation = () => {
+    if (phNo === '') return null;
+    if (phNoValid) {
+      return <span className="text-green-500">&#x2713;</span>;
+    }
+    return <span className="text-red-500">&#10060;</span>;
+  };
 
   //checking email domain
   function checkMail(mail) {
@@ -79,14 +104,15 @@ export default function RegisterLayout({
             fnameCorrect === -1 && <span>&#10060;</span>
           )}
         </span>
+        <div className="popup">Refer MainPage for Plan Details</div>
         <input
           type="text"
           id="name-register"
           className="credentials-input"
           value={fullName}
           onChange={(e) => {
-            setFullName(e.target.value.trim());
-            if (e.target.value.trim().length !== 0) {
+            setFullName(e.target.value);   //removed trim as user is not able to enter whitespaces between their first and last name
+            if (e.target.value.length !== 0 && !/\d/.test(e.target.value)) {   // added another condition that a name can't contain numbers
               setFnameCorrect(1);
             } else {
               setFnameCorrect(-1);
@@ -116,28 +142,15 @@ export default function RegisterLayout({
         ></input>
         <br />
         <span className="text-[#15144B] text-[1.2em] font-black tracking-wider">
-          Phone number{" "}
-          {phnoCorrect === 1 ? (
-            <span className="text-[#00FF00]">&#x2713;</span>
-          ) : (
-            phnoCorrect === -1 && <span>&#10060;</span>
-          )}
+          Phone number {renderPhoneNumberValidation()}
         </span>
         <input
-          type="number"
-          max={1e10 - 1}
-          min={1e9}
+          type="tel"   //best to use type as tel instead of number had to change state variables because of this
           id="phno-register"
-          className="credentials-input no-arrow"
-          value={phnoCorrect !== 0 && phNo}
-          onChange={(e) => {
-            setPhoneNo(e.target.value);
-            if (e.target.value.length === 10) {
-              setPhnoCorrect(1);
-            } else {
-              setPhnoCorrect(-1);
-            }
-          }}
+          className={`credentials-input no-arrow ${phNoValid ? '' : 'invalid'}`}
+          value={phNo}
+          onChange={handlePhoneNumberChange}
+          maxLength={10}
           required
         ></input>
         <br />

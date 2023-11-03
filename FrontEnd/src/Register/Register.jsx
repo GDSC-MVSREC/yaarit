@@ -9,7 +9,7 @@ import RegisterCode from "./RegisterCode.jsx";
 function Register() {
   const [fullName, setFullName] = useState("");
   const [rEmail, setREmail] = useState("");
-  const [phNo, setPhoneNo] = useState(0);
+  const [phNo, setPhoneNo] = useState("");
   const [rPass, setRPass] = useState("");
   const [year, setYear] = useState("");
   const [branch, setBranch] = useState("");
